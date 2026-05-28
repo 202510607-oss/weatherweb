@@ -1,7 +1,31 @@
-# Weather Web App
+# 🌦️ 프리미엄 기상 대시보드 (Premium Weather Dashboard)
 
-A beautiful real-time weather application built with HTML, CSS, and JavaScript.
+현대적이고 세련된 디자인의 실시간 날씨 정보 웹 애플리케이션입니다. Open-Meteo API를 활용하여 정확한 기상 데이터를 제공하며, 가독성 높은 디자인으로 사용자 경험을 극대화했습니다.
 
-## Deployment
+## ✨ 주요 기능
 
-This project is ready to be deployed to GitHub Pages.
+- **실시간 날씨 정보**: 현재 위치 또는 검색한 도시의 온도, 날씨 상태를 실시간으로 확인합니다.
+- **상세 기상 데이터**: 자외선 지수(UV Index), 습도, 풍속, 체감 온도 등 상세 정보를 제공합니다.
+- **7일간의 예보**: 일주일간의 날씨 변화를 한눈에 파악할 수 있는 주간 예보 기능을 포함합니다.
+- **반응형 디자인**: 모바일, 태블릿, PC 등 모든 기기에서 최적화된 화면을 제공합니다.
+- **고급스러운 UI**: 글래스모피즘(Glassmorphism) 스타일과 부드러운 애니메이션, 가독성 높은 Pretendard 서체를 적용했습니다.
+
+## 🛠️ 기술 스택
+
+- **Frontend**: HTML5, Vanilla CSS3, JavaScript (ES6+)
+- **Font**: Pretendard (KR), Outfit (EN/Number)
+- **Icons**: Lucide Icons
+- **API**: Open-Meteo API (실시간 기상 데이터)
+
+## 🚀 배포 방법
+
+이 프로젝트는 GitHub Pages를 통해 무료로 배포할 수 있습니다.
+
+1. 이 저장소를 본인의 GitHub 계정으로 포크하거나 복사합니다.
+2. 저장소의 **Settings > Pages** 메뉴로 이동합니다.
+3. **Branch** 섹션에서 `main` 브랜치를 선택하고 **Save**를 클릭합니다.
+4. 잠시 후 제공되는 URL을 통해 웹사이트에 접속할 수 있습니다.
+
+## 📄 라이선스
+
+이 프로젝트는 교육 및 개인 학습용으로 제작되었습니다.
