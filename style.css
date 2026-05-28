@@ -1,22 +1,63 @@
-:root {
-    /* Color Palette - Premium Dark Theme */
+:root[data-theme="dark"] {
     --primary-bg: #0b0f1a;
     --sidebar-bg: #111827;
     --card-bg: rgba(255, 255, 255, 0.05);
     --card-hover: rgba(255, 255, 255, 0.08);
     --card-border: rgba(255, 255, 255, 0.1);
-    
+    --input-bg: rgba(0, 0, 0, 0.2);
     --text-main: #f3f4f6;
     --text-muted: #9ca3af;
-    --accent: #6366f1; /* Indigo */
     --accent-glow: rgba(99, 102, 241, 0.3);
-    
+}
+
+:root[data-theme="light"] {
+    --primary-bg: #f8fafc;
+    --sidebar-bg: #ffffff;
+    --card-bg: rgba(0, 0, 0, 0.03);
+    --card-hover: rgba(0, 0, 0, 0.06);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --input-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --accent-glow: rgba(99, 102, 241, 0.1);
+}
+
+/* Default to Dark or based on media query if no data-theme */
+:root {
+    --accent: #6366f1;
     --priority-low: #10b981;
     --priority-medium: #f59e0b;
     --priority-high: #ef4444;
-    
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --radius: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --primary-bg: #0b0f1a;
+        --sidebar-bg: #111827;
+        --card-bg: rgba(255, 255, 255, 0.05);
+        --card-hover: rgba(255, 255, 255, 0.08);
+        --card-border: rgba(255, 255, 255, 0.1);
+        --input-bg: rgba(0, 0, 0, 0.2);
+        --text-main: #f3f4f6;
+        --text-muted: #9ca3af;
+        --accent-glow: rgba(99, 102, 241, 0.3);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+        --primary-bg: #f8fafc;
+        --sidebar-bg: #ffffff;
+        --card-bg: rgba(0, 0, 0, 0.03);
+        --card-hover: rgba(0, 0, 0, 0.06);
+        --card-border: rgba(0, 0, 0, 0.08);
+        --input-bg: #ffffff;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+        --accent-glow: rgba(99, 102, 241, 0.1);
+    }
 }
 
 * {
@@ -221,7 +262,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--input-bg);
     padding: 0.8rem 1.2rem;
     border-radius: 0.8rem;
     border: 1px solid var(--card-border);

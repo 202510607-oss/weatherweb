@@ -1,6 +1,6 @@
-// State Management
 let todos = JSON.parse(localStorage.getItem('focus-planner-todos')) || [];
 let currentTab = 'today';
+let currentTheme = localStorage.getItem('focus-planner-theme') || 'auto'; // auto, light, dark
 
 // DOM Elements
 const todoInput = document.getElementById('todo-input');
@@ -12,9 +12,12 @@ const progressText = document.getElementById('progress-text');
 const currentTabTitle = document.getElementById('current-tab-title');
 const navItems = document.querySelectorAll('.nav-item');
 const currentDateEl = document.getElementById('current-date');
+const themeToggle = document.getElementById('theme-toggle');
+const root = document.documentElement;
 
 // Initialize App
 function init() {
+    applyTheme();
     updateDate();
     renderTodos();
     updateStats();
@@ -24,6 +27,8 @@ function init() {
     todoInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') addTodo();
     });
+
+    themeToggle.addEventListener('click', cycleTheme);
     
     navItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -34,6 +39,34 @@ function init() {
             renderTodos();
         });
     });
+}
+
+// Theme Management
+function cycleTheme() {
+    if (currentTheme === 'auto') {
+        currentTheme = 'light';
+    } else if (currentTheme === 'light') {
+        currentTheme = 'dark';
+    } else {
+        currentTheme = 'auto';
+    }
+    
+    localStorage.setItem('focus-planner-theme', currentTheme);
+    applyTheme();
+}
+
+function applyTheme() {
+    if (currentTheme === 'auto') {
+        root.removeAttribute('data-theme');
+        themeToggle.innerHTML = '<i data-lucide="monitor"></i>';
+    } else if (currentTheme === 'light') {
+        root.setAttribute('data-theme', 'light');
+        themeToggle.innerHTML = '<i data-lucide="sun"></i>';
+    } else {
+        root.setAttribute('data-theme', 'dark');
+        themeToggle.innerHTML = '<i data-lucide="moon"></i>';
+    }
+    lucide.createIcons();
 }
 
 // Update Current Date
