@@ -4,7 +4,7 @@
     --card-bg: rgba(255, 255, 255, 0.1);
     --card-border: rgba(255, 255, 255, 0.2);
     --text-main: #f8fafc;
-    --text-muted: #94a3b8;
+    --text-muted: #cbd5e1; /* Made slightly lighter for better readability on dark bg */
     --accent: #38bdf8;
     --danger: #fb7185;
     --success: #4ade80;
@@ -21,11 +21,15 @@
 }
 
 body {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Pretendard', 'Outfit', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
     color: var(--text-main);
     background-color: var(--primary-bg);
     min-height: 100vh;
     overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    word-break: keep-all; /* Prevent awkward Korean word breaks */
 }
 
 .app-container {
@@ -73,10 +77,11 @@ header {
     border: 1px solid var(--card-border);
     background: var(--card-bg);
     color: white;
-    font-size: 1rem;
+    font-size: 1.1rem; /* Slightly larger */
     backdrop-filter: blur(10px);
     outline: none;
     transition: var(--transition);
+    font-weight: 500;
 }
 
 #city-input:focus {
@@ -135,9 +140,10 @@ header {
 }
 
 .temp-box h1 {
-    font-size: 5rem;
+    font-size: 5.5rem; /* Slightly larger */
     font-weight: 700;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
+    letter-spacing: -0.02em; /* Tighter letter spacing for large headers */
 }
 
 .condition-box {
@@ -175,9 +181,10 @@ header {
 }
 
 .detail-info p {
-    font-size: 0.9rem;
+    font-size: 0.95rem; /* Increased */
     color: var(--text-muted);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
 }
 
 .detail-info h3 {
@@ -228,7 +235,8 @@ header {
 
 .forecast-day {
     flex: 1;
-    font-weight: 400;
+    font-weight: 500; /* Increased */
+    font-size: 1rem;
 }
 
 .forecast-icon {
