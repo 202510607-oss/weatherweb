@@ -3,102 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Weather - 실시간 날씨 정보</title>
+    <title>Focus Planner - 당신의 완벽한 하루</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Fonts: Outfit (Numbers/English) & Pretendard (Korean) -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <!-- Lucide Icons -->
+    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <div class="app-container" id="app">
-        <!-- 배경 오버레이 -->
-        <div class="bg-overlay"></div>
-
-        <header>
-            <div class="search-container">
-                <input type="text" id="city-input" placeholder="도시 이름을 입력하세요 (예: 서울, Paris)" autocomplete="off">
-                <button id="search-btn">
-                    <i data-lucide="search"></i>
-                </button>
+    <div class="app-container">
+        <div class="bg-blur"></div>
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <i data-lucide="layers" class="logo-icon"></i>
+                <h1>Focus</h1>
             </div>
-        </header>
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="today">
+                    <i data-lucide="sun"></i>
+                    <span>오늘 할 일</span>
+                </button>
+                <button class="nav-item" data-tab="important">
+                    <i data-lucide="star"></i>
+                    <span>중요</span>
+                </button>
+                <button class="nav-item" data-tab="completed">
+                    <i data-lucide="check-circle"></i>
+                    <span>완료됨</span>
+                </button>
+            </nav>
+            <div class="stats-card">
+                <p>오늘의 성취</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-bar"></div>
+                </div>
+                <span id="progress-text">0% 완료</span>
+            </div>
+        </aside>
 
-        <main>
-            <!-- 메인 날씨 카드 -->
-            <section class="main-weather card" id="current-weather">
-                <div class="loading-spinner" id="loader"></div>
-                <div class="weather-content hidden" id="weather-data">
-                    <div class="location-box">
-                        <i data-lucide="map-pin" class="icon-small"></i>
-                        <h2 id="city-name">서울</h2>
-                    </div>
-                    <div class="temp-box">
-                        <h1 id="current-temp">24°</h1>
-                        <div class="condition-box">
-                            <span id="weather-icon-main"></span>
-                            <span id="weather-desc">맑음</span>
-                        </div>
-                    </div>
-                    <div class="date-box" id="current-date">
-                        2024년 5월 28일 목요일
-                    </div>
+        <main class="main-content">
+            <header class="main-header">
+                <div class="date-info">
+                    <h2 id="current-tab-title">오늘 할 일</h2>
+                    <p id="current-date">2024년 5월 28일 목요일</p>
                 </div>
-            </section>
+                <div class="header-actions">
+                    <button id="theme-toggle" class="icon-btn">
+                        <i data-lucide="moon"></i>
+                    </button>
+                </div>
+            </header>
 
-            <!-- 상세 정보 섹션 (자외선 지수 포함) -->
-            <section class="details-grid">
-                <div class="detail-card card">
-                    <i data-lucide="sun" class="icon-accent"></i>
-                    <div class="detail-info">
-                        <p>자외선 지수</p>
-                        <h3 id="uv-index">-</h3>
-                        <span id="uv-status" class="status-tag">보통</span>
-                    </div>
+            <div class="input-section card">
+                <div class="input-wrapper">
+                    <i data-lucide="plus" class="plus-icon"></i>
+                    <input type="text" id="todo-input" placeholder="새로운 할 일을 입력하세요..." autocomplete="off">
                 </div>
-                <div class="detail-card card">
-                    <i data-lucide="droplet" class="icon-accent"></i>
-                    <div class="detail-info">
-                        <p>습도</p>
-                        <h3 id="humidity">-%</h3>
-                    </div>
+                <div class="input-actions">
+                    <select id="priority-select">
+                        <option value="low">낮음</option>
+                        <option value="medium" selected>보통</option>
+                        <option value="high">긴급</option>
+                    </select>
+                    <button id="add-btn">추가하기</button>
                 </div>
-                <div class="detail-card card">
-                    <i data-lucide="wind" class="icon-accent"></i>
-                    <div class="detail-info">
-                        <p>풍속</p>
-                        <h3 id="wind-speed">- km/h</h3>
-                    </div>
-                </div>
-                <div class="detail-card card">
-                    <i data-lucide="thermometer" class="icon-accent"></i>
-                    <div class="detail-info">
-                        <p>체감 온도</p>
-                        <h3 id="feels-like">-°</h3>
-                    </div>
-                </div>
-            </section>
+            </div>
 
-            <!-- 주간 예보 -->
-            <section class="forecast-section card">
-                <h3>7일간의 예보</h3>
-                <div class="forecast-list" id="forecast-container">
-                    <!-- JS로 채워짐 -->
-                </div>
-            </section>
+            <div class="todo-section">
+                <ul id="todo-list" class="todo-list">
+                    <!-- JS에서 렌더링됨 -->
+                    <div class="empty-state">
+                        <i data-lucide="clipboard-list"></i>
+                        <p>할 일이 없습니다. 새로운 하루를 시작해 보세요!</p>
+                    </div>
+                </ul>
+            </div>
         </main>
-
-        <footer>
-            <p>© 2024 Weather Dashboard. Powered by Open-Meteo.</p>
-        </footer>
     </div>
 
     <script src="script.js"></script>
     <script>
-        // 아이콘 초기화
         lucide.createIcons();
     </script>
 </body>
