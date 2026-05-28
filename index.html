@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Weather - 실시간 날씨 정보</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container" id="app">
+        <!-- 배경 오버레이 -->
+        <div class="bg-overlay"></div>
+
+        <header>
+            <div class="search-container">
+                <input type="text" id="city-input" placeholder="도시 이름을 입력하세요 (예: 서울, Paris)" autocomplete="off">
+                <button id="search-btn">
+                    <i data-lucide="search"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- 메인 날씨 카드 -->
+            <section class="main-weather card" id="current-weather">
+                <div class="loading-spinner" id="loader"></div>
+                <div class="weather-content hidden" id="weather-data">
+                    <div class="location-box">
+                        <i data-lucide="map-pin" class="icon-small"></i>
+                        <h2 id="city-name">서울</h2>
+                    </div>
+                    <div class="temp-box">
+                        <h1 id="current-temp">24°</h1>
+                        <div class="condition-box">
+                            <span id="weather-icon-main"></span>
+                            <span id="weather-desc">맑음</span>
+                        </div>
+                    </div>
+                    <div class="date-box" id="current-date">
+                        2024년 5월 28일 목요일
+                    </div>
+                </div>
+            </section>
+
+            <!-- 상세 정보 섹션 (자외선 지수 포함) -->
+            <section class="details-grid">
+                <div class="detail-card card">
+                    <i data-lucide="sun" class="icon-accent"></i>
+                    <div class="detail-info">
+                        <p>자외선 지수</p>
+                        <h3 id="uv-index">-</h3>
+                        <span id="uv-status" class="status-tag">보통</span>
+                    </div>
+                </div>
+                <div class="detail-card card">
+                    <i data-lucide="droplet" class="icon-accent"></i>
+                    <div class="detail-info">
+                        <p>습도</p>
+                        <h3 id="humidity">-%</h3>
+                    </div>
+                </div>
+                <div class="detail-card card">
+                    <i data-lucide="wind" class="icon-accent"></i>
+                    <div class="detail-info">
+                        <p>풍속</p>
+                        <h3 id="wind-speed">- km/h</h3>
+                    </div>
+                </div>
+                <div class="detail-card card">
+                    <i data-lucide="thermometer" class="icon-accent"></i>
+                    <div class="detail-info">
+                        <p>체감 온도</p>
+                        <h3 id="feels-like">-°</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 주간 예보 -->
+            <section class="forecast-section card">
+                <h3>7일간의 예보</h3>
+                <div class="forecast-list" id="forecast-container">
+                    <!-- JS로 채워짐 -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2024 Weather Dashboard. Powered by Open-Meteo.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // 아이콘 초기화
+        lucide.createIcons();
+    </script>
+</body>
+</html>
